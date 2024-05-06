@@ -31,12 +31,12 @@ public class BicicletaController {
         return bicicletaService.editarBicicleta(bicicleta);
     }
 
-    @GetMapping("bicicleta/{id}")
+    @GetMapping("bicicleta/{id}/status")
     public String mostrarStatusBicicleta(@PathVariable Integer id){
         return bicicletaService.mostrarStatus(id);
     }
 
-    @PostMapping("/bicicleta/{id}")
+    @PutMapping("/bicicleta/{id}/status/atualizar")
     @ResponseStatus(HttpStatus.CREATED)
     public Bicicleta mudarStatusBicicleta(@PathVariable Integer id){
         return bicicletaService.mudarStatus(id);
