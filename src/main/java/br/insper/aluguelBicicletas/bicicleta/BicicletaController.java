@@ -22,7 +22,7 @@ public class BicicletaController {
     }
 
     @DeleteMapping("/bicicleta/{id}")
-    public Boolean deletarBicicleta(@PathVariable Integer id){
+    public String deletarBicicleta(@PathVariable Integer id){
         return bicicletaService.excluirBicicleta(id);
     }
 

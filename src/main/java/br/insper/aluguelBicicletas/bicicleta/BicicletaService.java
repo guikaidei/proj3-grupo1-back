@@ -20,14 +20,14 @@ public class BicicletaService {
         return bicicletaRepository.findAll();
     }
 
-    public Boolean excluirBicicleta(Integer id) {
+    public String excluirBicicleta(Integer id) {
         Optional<Bicicleta> op = bicicletaRepository.findById(id);
         if (op.isPresent()) {
             Bicicleta bike = op.get();
             bicicletaRepository.delete(bike);
-            return true;
+            return "Bicicleta " + id + " deletada com sucesso!";
         }
-        throw new RuntimeException("Bicicleta " + id + " não encontrada!");
+        throw new BicicletaNaoEncontradaException("Bicicleta " + id + " não encontrada!");
     }
 
     public Bicicleta editarBicicleta(Bicicleta bicicleta) {
@@ -42,7 +42,7 @@ public class BicicletaService {
             bike.setStatus(bicicleta.getStatus());
             return bicicletaRepository.save(bike);
         }
-        throw new RuntimeException("Bicicleta " + id + " não encontrada!");
+        throw new BicicletaNaoEncontradaException("Bicicleta " + id + " não encontrada!");
     }
 
     public String mostrarStatus(Integer id) {
@@ -51,7 +51,7 @@ public class BicicletaService {
             Bicicleta bike = op.get();
             return bike.getStatus();
         }
-        throw new RuntimeException("Bicicleta " + id + " não encontrada!");
+        throw new BicicletaNaoEncontradaException("Bicicleta " + id + " não encontrada!");
     }
 
     public Bicicleta mudarStatus(Integer id) {
@@ -66,6 +66,6 @@ public class BicicletaService {
             bike.setStatus("disponivel");
             return bicicletaRepository.save(bike);
         }
-        throw new RuntimeException("Bicicleta " + id + " não encontrada!");
+        throw new BicicletaNaoEncontradaException("Bicicleta " + id + " não encontrada!");
     }
 }
